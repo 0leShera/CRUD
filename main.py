@@ -3,23 +3,15 @@ from CRUD.moduls.read import user_info, all_users_info
 from CRUD.moduls.delete import user_del
 from CRUD.moduls.update import user_update
 from CRUD.moduls.help import help
-from CRUD.moduls.checks import check_email, check_phone
+from CRUD.moduls.checks import *
+from CRUD.moduls.art import art
 
 
 user_emails = []
+user_phones = []
 users_storage = {}
-# email_correct = False
 
-
-# def check_email(email, user_emails):
-#     while "@" not in email or email in user_emails:
-#         if "@" not in email:
-#             email = input("Please, enter correct email: ").lower()
-#         elif email in user_emails:
-#             email = input("This email address is already in use. Enter another: ").lower()
-#     else:
-#         return email
-
+print(art)
 help()
 
 while True:
@@ -32,7 +24,8 @@ while True:
         name = input("Name: ").lower()
         password = input("Password: ")
         phone = input("Phone: ")
-        create_user(email, name, password, phone, user_emails, users_storage)
+        phone = check_phone(phone, user_phones)
+        create_user(email, name, password, phone, user_emails, user_phones, users_storage)
         print("user_emails = ", user_emails)
         print("users_storage = ", users_storage)
 
