@@ -1,7 +1,7 @@
 from CRUD.moduls.create import create_user
 from CRUD.moduls.read import user_info, all_users_info
 from CRUD.moduls.delete import user_del
-from CRUD.moduls.update import user_update
+from CRUD.moduls.update import *
 from CRUD.moduls.help import help
 from CRUD.moduls.checks import *
 from CRUD.moduls.art import art
@@ -10,6 +10,7 @@ from CRUD.moduls.art import art
 user_emails = []
 user_phones = []
 users_storage = {}
+
 
 print(art)
 help()
@@ -22,7 +23,11 @@ while True:
         email = input("Email: ").lower()
         email = check_email(email, user_emails)
         name = input("Name: ").lower()
+        while not(name.strip()):
+            name = input("Enter name: ").lower()
         password = input("Password: ")
+        while len(password) == 0:
+            password = input("Enter password: ")
         phone = input("Phone: ")
         phone = check_phone(phone, user_phones)
         create_user(email, name, password, phone, user_emails, user_phones, users_storage)
