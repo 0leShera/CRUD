@@ -22,32 +22,35 @@ while True:
 
         email = input("Email: ").lower()
         email = check_email(email, user_emails)
+
         name = input("Name: ").lower()
         while not(name.strip()):
             name = input("Enter name: ").lower()
-        password = input("Password: ")
-        while len(password) == 0:
-            password = input("Enter password: ")
-        phone = input("Phone: ")
+
+        password = input("Password (Use > 7 chars): ")
+        password = check_password(password)
+
+        phone = input("Phone (Don't use '+'): ")
         phone = check_phone(phone, user_phones)
+
         create_user(email, name, password, phone, user_emails, user_phones, users_storage)
+
         print("user_emails = ", user_emails)
         print("users_storage = ", users_storage)
 
     elif action == "read_all" or action == "ra":
         print("action = ", action)
-        all_users_info(users_storage)
+        all_users_info(email, users_storage)
 
     elif action == "read_user" or action == "ru":
         print("action = ", action)
         user_e = input("Enter user email: ").lower()
         message = user_info(user_e, user_emails, users_storage)
-        # print("User = ", message)
 
     elif action == "update" or action == "u":
         print("action = ", action)
         user_e = input("Enter user email: ").lower()
-        message = user_update(email, name, password, phone, user_emails, users_storage)
+        message = user_update(email, name, password, phone, user_emails, users_storage, user_phones)
 
     elif action == "delete" or action == "d":
         print("action = ", action)
@@ -59,3 +62,11 @@ while True:
 
     else:
         print("Please select action again.")
+
+
+
+# Доделать
+# 1. При выводе все пользователей скрыть пароли звездочками
+# 2. Проверка сложности пароля? как?
+# 3. При смене емаила сохраняется доступ
+# к данным по ключу, чтобы изменить еще другие данные без выбрасывания в гл меню?
