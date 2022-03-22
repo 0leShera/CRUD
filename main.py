@@ -13,7 +13,12 @@ users_storage = {}
 
 
 print(art)
-help()
+# start = input("Do you want to use the crud app?\nEnter 'yes' to start, 'no' to exit, 'help' to tips: ")
+# if input == "no":
+#     print("Goodbye!")
+# elif input == "help":
+#     help()
+# elif input == "yes":
 
 while True:
     action = input("Please enter create or read, or update, or delete actions: ").lower()
@@ -40,7 +45,7 @@ while True:
 
     elif action == "read_all" or action == "ra":
         print("action = ", action)
-        all_users_info(email, users_storage)
+        all_users_info(users_storage)
 
     elif action == "read_user" or action == "ru":
         print("action = ", action)
@@ -50,7 +55,7 @@ while True:
     elif action == "update" or action == "u":
         print("action = ", action)
         user_e = input("Enter user email: ").lower()
-        message = user_update(email, name, password, phone, user_emails, users_storage, user_phones)
+        message = user_update(email, phone, user_emails, users_storage, user_phones)
 
     elif action == "delete" or action == "d":
         print("action = ", action)

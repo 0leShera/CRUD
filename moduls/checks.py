@@ -23,13 +23,14 @@ def check_email(email, user_emails):
 
 
 def check_phone(phone, user_phones):
-    while (len(phone) < 9 or len(phone) > 12) or not phone.isdigit():
-        phone = input("""
-        Please, enter correct phone.
-        Don't use '+' and letters. Example: 89997654321.
-        Enter: """)
-    while phone in user_phones:
-        phone = input("This phone is already in use. Enter another: ").lower()
+    while (len(phone) < 9 or len(phone) > 12) or not phone.isdigit() or phone in user_phones:
+        if (len(phone) < 9 or len(phone) > 12) or not phone.isdigit():
+            phone = input("""
+            Please, enter correct phone.
+            Don't use '+' and letters. Example: 89997654321.
+            Enter: """)
+        if phone in user_phones:
+            phone = input("This phone is already in use. Enter another: ")
     else:
         return phone
 

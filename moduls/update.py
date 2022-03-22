@@ -45,7 +45,7 @@ def update_password(email, users_storage):
             print("Your password update.")
 
 
-def user_update(email, name, password, phone, user_emails, users_storage, user_phones):
+def user_update(email, phone, user_emails, users_storage, user_phones):
 
     if email in user_emails:
         choice = input("What do you want to update?\n Email, name, phone or password: ").lower()
