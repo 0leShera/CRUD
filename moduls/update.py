@@ -3,24 +3,39 @@ from CRUD.moduls.checks import *
 
 
 def update_name(email, users_storage):
-    n_name = input(f"Your name {users_storage[email]['name']}. Enter new name: ").lower()
+    print(f"Your name {users_storage[email]['name']}.")
+    users_storage[email]['name'] = None
+    n_name = input("Enter new name: ").lower()
     users_storage[email]['name'] = n_name
     print(f"Your new name: {n_name}.")
 
 
 def update_email(email, users_storage, user_emails):
-    n_email = input("Enter new email: ").lower()
-    n_email = check_email(email, user_emails)
-    users_storage[n_email] = users_storage.pop(email)
-    user_emails.append(n_email)
-    print(f"Your new email: {n_email}.")
+    old_email = email
+    user_emails.remove(email)      # Удалить старый email из базы
+    # print(user_emails)
+    # print(users_storage)
+    email = None
+    email = input("Enter new email: ").lower()
+    email = check_email(email, user_emails)
+    users_storage[email] = users_storage.pop(old_email)
+    user_emails.append(email)
+    # print(user_emails)
+    print(f"Your new email: {email}.")
 
 
 def update_phone(email, phone, users_storage, user_phones):
-    n_phone = input(f"Your phone {users_storage[email]['phone']}. Enter new phone: ")
-    n_phone = check_phone(phone, user_phones)
-    users_storage[email]['phone'] = n_phone
-    print(f"Your new phone: {n_phone}.")
+    print(f"Your phone {users_storage[email]['phone']}.")
+    user_phones.remove(users_storage[email]['phone'])
+    # print(user_phones)
+    users_storage[email]['phone'] = None
+    phone = input("Enter new phone: ")
+    # phone = n_phone
+    phone = check_phone(phone, user_phones)
+    users_storage[email]['phone'] = phone
+    user_phones.append(phone)
+    print(f"Your new phone: {phone}.")
+    # print(user_phones)
 
 
 def update_password(email, users_storage):
@@ -46,7 +61,6 @@ def update_password(email, users_storage):
 
 
 def user_update(email, phone, user_emails, users_storage, user_phones):
-
     if email in user_emails:
         choice = input("What do you want to update?\n Email, name, phone or password: ").lower()
         if choice == "email":
@@ -67,5 +81,3 @@ def user_update(email, phone, user_emails, users_storage, user_phones):
 
     else:
         print(f"No user with email: {email}")
-
-

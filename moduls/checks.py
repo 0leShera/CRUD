@@ -3,7 +3,7 @@ import re
 r_mail = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
 numbers = '[0-9]'
 letters = '[a-zA-Z]'
-
+# А в if добавь если все гуд эта переменная = тру
 
 def correct_email(email):
     if re.search(r_mail, email):
@@ -23,7 +23,8 @@ def check_email(email, user_emails):
 
 
 def check_phone(phone, user_phones):
-    while (len(phone) < 9 or len(phone) > 12) or not phone.isdigit() or phone in user_phones:
+    correct_phone = False
+    while (len(phone) < 9 or len(phone) > 12) or not phone.isdigit() or phone in user_phones and not correct_phone:
         if (len(phone) < 9 or len(phone) > 12) or not phone.isdigit():
             phone = input("""
             Please, enter correct phone.
@@ -32,6 +33,7 @@ def check_phone(phone, user_phones):
         if phone in user_phones:
             phone = input("This phone is already in use. Enter another: ")
     else:
+        correct_phone = True
         return phone
 
 
