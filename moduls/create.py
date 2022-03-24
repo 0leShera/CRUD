@@ -6,5 +6,5 @@ def create_user(email, name, password, phone, user_emails, user_phones, users_st
                             "password": password,
                             "phone": phone}
 
-    print("create_user_f = ", user_info)
+    # print("create_user_f = ", user_info)
     user_phones.append(phone)

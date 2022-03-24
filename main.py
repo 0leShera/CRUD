@@ -12,21 +12,28 @@ user_phones = []
 users_storage = {}
 
 
+def enter_email():
+    email = input("Enter user email: ").lower()
+    while not (email.strip()):
+        email = input("Enter email: ")
+    return email
+
+
 def CRUD():
-    print("\nEnter help to use tips.")
+    print("\n*** Enter 'help' to use tips. ***")
     while True:
-        action = input("Please enter create or read, or update, or delete actions: ").lower()
+        action = input("\n-- Please enter create or read, or update, or delete actions: ").lower()
         if action == "create" or action == "c":
-            print("action = ", action)
+            # print("action = ", action)
 
             email = input("Email: ").lower()
             email = check_email(email, user_emails)
 
-            name = input("Name: ").lower()
+            name = input("Name: ")
             while not(name.strip()):
-                name = input("Enter name: ").lower()
+                name = input("Enter name: ")
 
-            password = input("Password (Use > 7 chars): ")
+            password = input("Password (Use min 7 chars): ")
             password = check_password(password)
 
             phone = input("Phone (Don't use '+'): ")
@@ -34,26 +41,32 @@ def CRUD():
 
             create_user(email, name, password, phone, user_emails, user_phones, users_storage)
 
-            print("user_emails = ", user_emails)
+            # Очистить все переменные после создания пользователя?
+            email = None
+            name = None
+            password = None
+            phone = None
+
+            # print("user_emails = ", user_emails)
             print("users_storage = ", users_storage)
 
         elif action == "read_all" or action == "ra":
-            print("action = ", action)
+            # print("action = ", action)
             all_users_info(users_storage)
 
         elif action == "read_user" or action == "ru":
-            print("action = ", action)
-            email = input("Enter user email: ").lower()
+            # print("action = ", action)
+            email = enter_email()
             user_info(email, user_emails, users_storage)
 
         elif action == "update" or action == "u":
-            print("action = ", action)
-            email = input("Enter user email: ").lower()
-            message = user_update(email, phone, user_emails, users_storage, user_phones)
+            # print("action = ", action)
+            email = enter_email()
+            user_update(email, phone, user_emails, users_storage, user_phones)
 
         elif action == "delete" or action == "d":
-            print("action = ", action)
-            email = input("Enter user email: ").lower()
+            # print("action = ", action)
+            email = enter_email()
             user_del(email, user_emails, users_storage)
 
         elif action == "help" or action == "h":
@@ -65,8 +78,8 @@ def CRUD():
 
 print(art)
 start = input("Do you want to use the crud app?\nEnter 'yes' to start, 'no' to exit: ")
-if start == "no":
+if start == "no" or start == "n":
     print("Goodbye!")
-elif start == "yes":
+elif start == "yes" or start == "y":
     CRUD()
 

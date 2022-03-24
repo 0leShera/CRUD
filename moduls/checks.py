@@ -3,7 +3,7 @@ import re
 r_mail = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
 numbers = '[0-9]'
 letters = '[a-zA-Z]'
-# А в if добавь если все гуд эта переменная = тру
+
 
 def correct_email(email):
     if re.search(r_mail, email):
