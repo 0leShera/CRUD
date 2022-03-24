@@ -1,4 +1,4 @@
-from CRUD.moduls.create import create_user
+from CRUD.moduls.create import *
 from CRUD.moduls.read import user_info, all_users_info
 from CRUD.moduls.delete import user_del
 from CRUD.moduls.update import *
@@ -40,6 +40,7 @@ def CRUD():
             phone = check_phone(phone, user_phones)
 
             create_user(email, name, password, phone, user_emails, user_phones, users_storage)
+            write_json(create_user(email, name, password, phone, user_emails, user_phones, users_storage))
 
             # Очистить все переменные после создания пользователя?
             email = None
@@ -81,5 +82,6 @@ start = input("Do you want to use the crud app?\nEnter 'yes' to start, 'no' to e
 if start == "no" or start == "n":
     print("Goodbye!")
 elif start == "yes" or start == "y":
+    print(art2)
     CRUD()
 
